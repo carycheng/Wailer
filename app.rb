@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'sinatra'
+require 'boxr'
 
 configure do
   enable :sessions
@@ -40,4 +41,10 @@ end
 
 get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
+end
+
+get '/collab' do
+  client = Boxr::Client.new('u0wucRzbojFzmDQVuHxJ3FK8ngFMVmYZ')
+  collaboration = client.add_collaboration('3536701079', {id: '235248328', type: :user}, :viewer_uploader)
+  # expect(collaboration.accessible_by.id).to eq('235248328')
 end

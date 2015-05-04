@@ -1,61 +1,166 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<!--
+  Solarize by TEMPLATED
+  templated.co @templatedco
+  Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
 <html>
-	<head>
-		<title>Sinatra + Twitter Bootstrap</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- Bootstrap -->
-		<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <head>
+    <title>Solarize by TEMPLATED</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery.dropotron.min.js"></script>
+    <script src="../../js/skel.min.js"></script>
+    <script src="../../js/skel-layers.min.js"></script>
+    <script src="../../js/init.js"></script>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <!-- Bootstrap -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!--     <link href="/css/bootstrap.css" rel="stylsheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet"> -->
+    <noscript>
+      <link href="/css/bootstrap.css" rel="stylsheet">
+      <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+      <link rel="stylesheet" href="../../css/skel.css" />
+      <link rel="stylesheet" href="../../css/style.css" />
+<!--       <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+ -->
+    </noscript>
+    <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+  </head>
+  <body class="homepage">
 
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-		  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-		<![endif]-->
-	</head>
-	<body>
-		<div class="container">
+    <!-- Header Wrapper -->
+      <div class="wrapper style1">
+      
+      <!-- Header -->
+        <div id="header">
+          <div class="container">
+              
+            <!-- Logo -->
+              <h1><a href="#" id="logo">Solarize</a></h1>
+            
+            <!-- Nav -->
+              <nav id="nav">
+                <ul>
+                  <li class="active"><a href="index.html">Home</a></li>
+                  <li>
+                    <a href="">WWE Inc.</a>
+                    <ul>
+                      <li><a href="#">WWE Studios</a></li>
+                      <li><a href="#">WWE Music Group</a></li>
+                      <li><a href="#">WWE Performance Center</a></li>
+                      <li>
+                        <a href="">WWE Network</a>
+                        <ul>
+                          <li><a href="#">WWE Book</a></li>
+                          <li><a href="#">WWE Shop</a></li>
+                          <li><a href="#">WWE Jet Services</a></li>
+                          <li><a href="#">WWE Library</a></li>
+                          <!-- <li><a href="#">Veroeros feugiat</a></li> -->
+                        </ul>
+                      </li>
+                      <li><a href="#">WCW Inc.</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="left-sidebar.html">Events</a></li>
+                  <li><a href="right-sidebar.html">Partners</a></li>
+                  <li><a href="no-sidebar.html">Contact</a></li>
+                </ul>
+              </nav>
+  
+          </div>
+        </div>
+        
+      <!-- Banner -->
+        <div id="banner" class="footerTopPadding">
+          <section class="container containerpadding">
 
-			<!-- Static navbar -->
-			<nav class="navbar navbar-default" role="navigation">
-			  <div class="navbar-header">
-			    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-			      <span class="sr-only">Toggle navigation</span>
-			      <span class="icon-bar"></span>
-			      <span class="icon-bar"></span>
-			      <span class="icon-bar"></span>
-			    </button>
-			    <a class="navbar-brand" href="/">Sinatra + Twitter Bootstrap</a>
-			  </div>
-			  <div class="navbar-collapse collapse">
-			    <ul class="nav navbar-nav">
-			      <li><a href="/secure/place">Secret</a></li>
-			    </ul>
-			    <ul class="nav navbar-nav navbar-right">
-			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=username%> <b class="caret"></b></a>
-			        <ul class="dropdown-menu">
-			            <li><a href="/login/form">Login</a></li>
-			            <li class="divider"></li>
-			            <li><a href="/logout">Logout</a></li>
-			        </ul>
-			      </li>
+            <!-- <a class="btn-primary largeText" href="#openModal">Request Access</a> -->
+            <div class="requestLeftPadding">
+              <a type="button" class="btn btn-primary btn-lg btncolor noUnderline" href="#openModal">Request Access</a>
+            </div>
+            <div id="openModal" class="modalDialog">
+              <div>
+                <!-- <button type="button" class="btn btn-primary btn-lg btncolor">Request Access</button> -->
+                <a href="#" id="close" title="Exit" class="close" data-dismiss-"modal">X</a>
+                <div class="txtFontColor">
+                  <h3>Client Info</h3>
+                </div>
+                  <div class="form-group">
+                    <label class="txtFontColor" for="exampleInputEmail1">test</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="first/middle/last">
+                  </div>
+                  <div class="form-group">
+                    <label class="txtFontColor" for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  </div>
 
-			    </ul>
-			  </div><!--/.nav-collapse -->
-			</nav>
+                  <!-- Dropdown styling -->
+                  <div class="dropdown">
+                    <button href="openModal2" class="btn btn-default dropdown-toggle dropdownHeight dropdownColor" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                      Affiliation
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                      <li role="presentation"><a href="#openModal2" id="request" role="menuitem" tabindex="-1">Cable</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Satelite</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Telco</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">TV</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ad Agency</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Marketing/Creative Provider</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Radio Station</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">WWE Employee</a></li>
+                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Other</a></li>
+                    </ul>
+                  </div>
+              </div>
+            </div>
 
-			<div>
-			      <%if @error then %>
-			          <div class="alert alert-error"><%=@error%></div>
-			      <% end %>
-			      <%= yield %>
-			</div>
+            <!-- open second modal -->
+            <div id="openModal2" class="modalDialog backgroundColor">
+              <div>
+                <h2 class="txtFontColor">Thank you<h2>
+                  <font size="3">An invitation has been sent out to your email<font></br>
+                  <a id="exitButton" type="button" class="btn btn-primary btn-lg btncolor noUnderline" href="/collab" id="close">Exit</a>
+              </div>
+            </div>
 
-	</div>
+          </section>
+        </div>
+      </div>
+    
+  <!-- Footer -->
+    <div id="footer" class="footerpadding footBackColor">
+      <section class="container footerColor footBackColor">
+        <header class="major footBackColor">
+          <h2>Access Media Content</h2>
+          <span class="byline">Connect with us and be up to date with World Wrestling Entertainment Inc.</span>
+        </header>
+        <ul class="icons">
+          <li class="active"><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
+          <li><a href="#" class="fa fa-twitter"><span>Twitter</span></a></li>
+          <li><a href="#" class="fa fa-dribbble"><span>Pinterest</span></a></li>
+          <li><a href="#" class="fa fa-google-plus"><span>Google+</span></a></li>
+        </ul>
+        <hr />
+      </section>  
+    </div>
+    <script>
+          $('#request').on("click",function(){
+                $('#openModal').modal('hide');
+                $('#openModal2').modal('show');
+          });
 
+          $('#exitButton').on("click", function(){
+                $('#openModal2').modal('hide');
+          });
+    </script>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/vendor/jquery-1.9.1.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>

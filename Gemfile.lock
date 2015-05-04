@@ -1,6 +1,17 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.3.8)
+    boxr (0.25.0)
+      addressable (~> 2.3)
+      hashie (~> 3.3)
+      httpclient (~> 2.5)
+      jwt (~> 1.4)
+      oj (~> 2.11)
+    hashie (3.4.1)
+    httpclient (2.6.0.1)
+    jwt (1.4.1)
+    oj (2.12.5)
     rack (1.6.0)
     rack-protection (1.5.3)
       rack
@@ -14,4 +25,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  boxr
   sinatra
