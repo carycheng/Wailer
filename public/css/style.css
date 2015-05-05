@@ -927,4 +927,30 @@ input, select, textarea{
 	padding-left: 8px !important; 
 }
 
+.modalBackground{
+	background-color: #EAEAEA !important;
+	border: none !important;
+}
 
+.btn-small {
+    padding: 5px 10px;
+    font-size: px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+    }
+
+
+.portalImage{
+	background-image: url("http://i.imgur.com/JRfGBL5.jpg") !important;
+}
+
+.portalNoFooterPading{
+	padding: none !important
+}
+
+.embedPositioning{
+	padding-top: 50px !important;
+	padding-left: 50px !important;
+}

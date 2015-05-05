@@ -58,12 +58,13 @@ end
   get '/collab' do
     session[:identity] = params['username']
     token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-    client = Boxr::Client.new('6yQ2B4kTb79BJlGH0O67ebdMgpIYOHoV', 
+    client = Boxr::Client.new('9vxsAYMeeZFFmuMb2haY3hmXLHnO1GuL', 
                             refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
                             client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
                             client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
                             &token_refresh_callback)
     collaboration = client.add_collaboration('3536701079', {login: session[:identity], type: :user}, :viewer)
+    File.new('public/portal.html').readlines
   end
 
 get '/Satelite' do
