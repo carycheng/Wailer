@@ -91,13 +91,24 @@
                   <h3>Client Info</h3>
                 </div>
                   <div class="form-group">
-                    <label class="txtFontColor" for="exampleInputEmail1">test</label>
+                    <label class="txtFontColor" for="exampleInputEmail1">Name</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="first/middle/last">
                   </div>
-                  <div class="form-group">
-                    <label class="txtFontColor" for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                  </div>
+
+
+
+                    <div class="form-group">
+                      <form action="/" method="get">
+                        <label class="txtFontColor" for="userInput">Email address</label>
+                        <input name="content" type="text" class="form-control" id="userInput" placeholder="Enter email"/>
+                        <a type="button" class="btn btn-primary btn-lg btncolor noUnderline" href="/collab">Test</a>
+                      </form>
+                    </div>
+
+
+
+
+
 
                   <!-- Dropdown styling -->
                   <div class="dropdown">
@@ -106,9 +117,13 @@
                       <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                      <form>
                       <li role="presentation"><a href="#openModal2" id="request" role="menuitem" tabindex="-1">Cable</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Satelite</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Telco</a></li>
+                    </form>
+                      <li role="presentation"><a href="#openModal3" id="request" role="menuitem" tabindex="-1">Satelite</a></li>
+
+                      <li role="presentation"><a href="#openModal4" id="request" role="menuitem" tabindex="-1">Telco</a></li>
+
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">TV</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ad Agency</a></li>
                       <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Marketing/Creative Provider</a></li>
@@ -120,13 +135,31 @@
               </div>
             </div>
 
-            <!-- open second modal -->
+            <!-- open second modal for Cable-->
             <div id="openModal2" class="modalDialog backgroundColor">
               <div>
                 <h2 class="txtFontColor">Thank you<h2>
                   <font size="3">An invitation has been sent out to your email<font></br>
                   <a id="exitButton" type="button" class="btn btn-primary btn-lg btncolor noUnderline" href="/collab" id="close">Exit</a>
               </div>
+            </div>
+
+            <!-- open modal for Satelite -->
+            <div id="openModal3" class="modalDialog backgroundColor">
+              <div>
+                <h2 class="txtFontColor">Thank you<h2>
+                  <font size="3">An invitation has been sent out to your email<font></br>
+                  <a id="exitButton" type="button" class="btn btn-primary btn-lg btncolor noUnderline" href="/Satelite" id="close">Exit</a>
+              </div>
+            </div>
+
+            <!-- open modal for Telco -->
+            <div id="openModal4" class="modalDialog backgroundColor"> 
+              <div>
+                <h2 class="txtFontColor">Thank you<h2>
+                  <font size="3">An invitation has been sent out to your email<font></br>
+                  <a id="exitButton" type="button" class="btn btn-primary btn-lg btncolor noUnderline" href="/Telco" id="close">Exit</a>
+              </div> 
             </div>
 
           </section>
@@ -157,7 +190,14 @@
 
           $('#exitButton').on("click", function(){
                 $('#openModal2').modal('hide');
+
           });
+
+          function userEmail(){
+              var input = document.getElementById("userInput").value;
+              console.log(input);
+              puts(cable, input)
+          }
     </script>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -43,8 +43,47 @@ get '/secure/place' do
   erb 'This is a secret place that only <%=session[:identity]%> has access to!'
 end
 
-get '/collab' do
-  client = Boxr::Client.new('u0wucRzbojFzmDQVuHxJ3FK8ngFMVmYZ')
-  collaboration = client.add_collaboration('3536701079', {id: '235248328', type: :user}, :viewer_uploader)
-  # expect(collaboration.accessible_by.id).to eq('235248328')
+# get '/collab' do
+#   client = Boxr::Client.new('u0wucRzbojFzmDQVuHxJ3FK8ngFMVmYZ')
+#   collaboration = client.add_collaboration('3536701079', {id: '235248328', type: :user}, :viewer_uploader)
+#   # expect(collaboration.accessible_by.id).to eq('235248328')
+# end
+
+get '/' do
+  @notes = Note.all :order => :id.desc
+  @title = 'All Notes'
+  erb :layout
+end
+
+  get '/collab' do
+    # content = params[:content]
+    # puts content
+    @post = params[:post]
+    token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
+    client = Boxr::Client.new('ExyGB5n1DZA2cGkEiFWBzpVCqLu2RamO', 
+                            refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
+                            client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
+                            client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
+                            &token_refresh_callback)
+    collaboration = client.add_collaboration('3536701079', {login: "#{@post}", type: :user}, :viewer)
+  end
+
+get '/Satelite' do
+  token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
+  client = Boxr::Client.new('rh7DQKy2QgJg5QYJovbmL59T2KUztoap', 
+                          refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
+                          client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
+                          client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
+                          &token_refresh_callback)
+  collaboration = client.add_collaboration('3551269279', {id: '235248328', type: :user}, :viewer)
+end
+
+get '/Telco' do
+  token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
+  client = Boxr::Client.new('CXGMVHsZY7HOXTXRGwgi67klw0v0MawW', 
+                          refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
+                          client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
+                          client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
+                          &token_refresh_callback)
+  collaboration = client.add_collaboration('3551271557', {id: '235248328', type: :user}, :viewer)
 end
