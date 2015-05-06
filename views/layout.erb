@@ -89,7 +89,7 @@
                 <a href="#" id="close" title="Exit" class="close" data-dismiss-"modal">X</a>
                   <div class="txtFontColor">
                     <h3>Select Group</h3>
-                    <p><font size="2">You will then be asked to verify your email in order to
+                    <p><font size="2">You will be asked to verify your email in order to
                        gain access to media content packaged for your affiliation. 
                        Thank you!</font> 
                     </p>
@@ -127,8 +127,17 @@
                   <h3>Client Info</h3>
                 </div>
                   <form action='/collab' method='get' class="form-inline well modalBackground">
-                      <input type="text" name='username' placeholder="username" autofocus>
-                      <input class="btn primary" type='submit' value='log in'>
+                    <div class="txtFontColor">
+                      <h3>Name</h3>
+                    </div>
+                      <input type="text" name='name' placeholder="First/Middle/Last" autofocus>
+                    <div class="txtFontColor">
+                      <h3>Email</h3>
+                    </div>
+                      <input type="text" name='username' placeholder="user@example.com" autofocus>
+                      <div class="verifyPadding verifyButton">
+                        <input class="btn btn-primary btn-lg btncolor noUnderline btn-small verifyButton" type='submit' value='Verify'>
+                      </div>
                   </form>
               </div>
             </div>
@@ -140,10 +149,20 @@
                 <div class="txtFontColor">
                   <h3>Client Info</h3>
                 </div>
+                  
                   <form action='/Satelite' method='get' class="form-inline well">
+                    <div class="txtFontColor">
+                      <h3>Name</h3>
+                    </div>
+                    <input type="text" name='name' placeholder="First/Middle/Last" autofocus>
+                    <div class="txtFontColor">
+                      <h3>Email</h3>
+                    </div>
                       <input type="text" name='username' placeholder="username" autofocus>
-                      <input class="btn primary" type='submit' value='log in'>
-                    </form>
+                      <div class="verifyPadding verifyButton">
+                        <input class="btn btn-primary btn-lg btncolor noUnderline btn-small verifyButton" type='submit' value='Verify'>
+                      </div>                  
+                  </form>
               </div>
             </div>
 
@@ -155,9 +174,18 @@
                   <h3>Client Info</h3>
                 </div>
                   <form action='/Telco' method='get' class="form-inline well">
+                      <div class="txtFontColor">
+                      <h3>Name</h3>
+                    </div>
+                    <input type="text" name='name' placeholder="First/Middle/Last" autofocus>
+                    <div class="txtFontColor">
+                      <h3>Email</h3>
+                    </div>
                       <input type="text" name='username' placeholder="username" autofocus>
-                      <input class="btn btn-primary btn-lg btncolor noUnderline btn-small" type='submit' value='log in'>
-                    </form>
+                      <div class="verifyPadding verifyButton">
+                        <input class="btn btn-primary btn-lg btncolor noUnderline btn-small verifyButton" type='submit' value='Verify'>
+                      </div>                      
+                  </form>
               </div> 
             </div>
           </section>
@@ -189,6 +217,10 @@
           $('#exitButton').on("click", function(){
                 $('#openModal2').modal('hide');
 
+          });
+
+          $('exit').on("click", function(){
+                $('#openModal2').modal('hide');
           });
 
           function userEmail(){
