@@ -126,11 +126,14 @@
                 <div class="txtFontColor">
                   <h3>Client Info</h3>
                 </div>
+
+
+
                   <form action='/collab' method='get' class="form-inline well modalBackground">
                     <div class="txtFontColor">
-                      <h3>Name</h3>
+                      <h3>First Name</h3>
                     </div>
-                      <input type="text" name='name' placeholder="First/Middle/Last" autofocus>
+                      <input type="text" name='name' placeholder="John" autofocus>
                     <div class="txtFontColor">
                       <h3>Email</h3>
                     </div>
@@ -139,6 +142,12 @@
                         <input class="btn btn-primary btn-lg btncolor noUnderline btn-small verifyButton" type='submit' value='Verify'>
                       </div>
                   </form>
+
+
+
+
+
+
               </div>
             </div>
 
@@ -152,9 +161,9 @@
                   
                   <form action='/Satelite' method='get' class="form-inline well">
                     <div class="txtFontColor">
-                      <h3>Name</h3>
+                      <h3>First Name</h3>
                     </div>
-                    <input type="text" name='name' placeholder="First/Middle/Last" autofocus>
+                    <input type="text" name='name' placeholder="John" autofocus>
                     <div class="txtFontColor">
                       <h3>Email</h3>
                     </div>
@@ -175,9 +184,9 @@
                 </div>
                   <form action='/Telco' method='get' class="form-inline well">
                       <div class="txtFontColor">
-                      <h3>Name</h3>
+                      <h3>First Name</h3>
                     </div>
-                    <input type="text" name='name' placeholder="First/Middle/Last" autofocus>
+                    <input type="text" name='name' placeholder="John" autofocus>
                     <div class="txtFontColor">
                       <h3>Email</h3>
                     </div>
@@ -219,7 +228,7 @@
 
           });
 
-          $('exit').on("click", function(){
+          $('#close').on("click", function(){
                 $('#openModal2').modal('hide');
           });
 

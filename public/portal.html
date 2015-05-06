@@ -43,7 +43,9 @@
      <div id="footer" class="portalNoFooterPading footBackColor">
       <section class="container footerColor footBackColor">
         <header class="major footBackColor">
-          <h2>Welcome</h2>
+            <div id='name'>
+              
+            </div>
           <span class="byline">This is your internal portal</span>
         </header>
         <ul class="icons">
@@ -56,22 +58,23 @@
       </section>  
     </div>  
     
-    <script>
-          $('#request').on("click",function(){
-                $('#openModal').modal('hide');
-                $('#openModal2').modal('show');
-          });
-
-          $('#exitButton').on("click", function(){
-                $('#openModal2').modal('hide');
-
-          });
-
-          function userEmail(){
-              var input = document.getElementById("userInput").value;
-              console.log(input);
-              puts(cable, input)
+    <script language="JavaScript">
+        function processForm()
+        {
+          var parameters = location.search.substring(1).split("&");
+          var temp = parameters[0].split("=");
+          l = unescape(temp[1]);
+          // alert(l); //Dialog with the text you put on the textbox
           }
+          processForm();
+          var username = l;
+          var welcome = 'Welcome ';
+          var display = document.getElementById('name');
+          display.innerHTML = welcome + username;
+          display.style.fontSize = "50px";
+    </script
+
+
     </script>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

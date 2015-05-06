@@ -962,3 +962,7 @@ input, select, textarea{
 .verifyButton{
 	padding: none !important;
 }
+
+.welcome-Font{
+	font-size: 40px !important;
+}
