@@ -58,7 +58,7 @@ end
   get '/collab' do
     session[:identity] = params['username']
     token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-    client = Boxr::Client.new('qBtKbnoxT3grKdppOXdcNUkLOGrP5gQl', 
+    client = Boxr::Client.new('BXtFa55IaLYoNQsYvBvXtavZX7mRYwyW', 
                             refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
                             client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
                             client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
@@ -70,7 +70,7 @@ end
 get '/Satelite' do
   session[:identity] = params['username']
   token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-  client = Boxr::Client.new('qBtKbnoxT3grKdppOXdcNUkLOGrP5gQl', 
+  client = Boxr::Client.new('BXtFa55IaLYoNQsYvBvXtavZX7mRYwyW', 
                           refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
                           client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
                           client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
@@ -82,7 +82,7 @@ end
 get '/Telco' do
   session[:identity] = params['username']
   token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-  client = Boxr::Client.new('qBtKbnoxT3grKdppOXdcNUkLOGrP5gQl', 
+  client = Boxr::Client.new('BXtFa55IaLYoNQsYvBvXtavZX7mRYwyW', 
                           refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
                           client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
                           client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
