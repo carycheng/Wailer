@@ -1,234 +1,71 @@
-<!DOCTYPE HTML>
-<!--
-  Solarize by TEMPLATED
-  templated.co @templatedco
-  Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
-<html>
-  <head>
-    <title>BlueMedia Portal</title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-    <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/jquery.dropotron.min.js"></script>
-    <script src="../../js/skel.min.js"></script>
-    <script src="../../js/skel-layers.min.js"></script>
-    <script src="../../js/init.js"></script>
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <!-- Bootstrap -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!--     <link href="/css/bootstrap.css" rel="stylsheet">
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet"> -->
-    <noscript>
-      <link href="/css/bootstrap.css" rel="stylsheet">
-      <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-      <link rel="stylesheet" href="../../css/skel.css" />
-      <link rel="stylesheet" href="../../css/style.css" />
-<!--       <link rel="stylesheet" href="../../css/bootstrap.min.css" />
- -->
-    </noscript>
-    <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-  </head>
-  <body class="homepage">
-
-    <!-- Header Wrapper -->
-      <div class="wrapper style1">
-      
-      <!-- Header -->
-        <div id="header">
-          <div class="container">
-              
-            <!-- Logo -->
-              <h1><a href="#" id="logo">Blue Media</a></h1>
-            
-            <!-- Nav -->
-              <nav id="nav">
-                <ul>
-                  <li class="active"><a href="index.html">Home</a></li>
-                  <li>
-                    <a href="">Blue Media</a>
-                    <ul>
-                      <li><a href="http://www.wwe.com/inside/overtheropes/wwestudios">WWE Studios</a></li>
-                      <li><a href="http://www.wwe.com/inside/wwemusic">WWE Music Group</a></li>
-                      <li><a href="http://www.wwe.com/videos/playlists/wwe-performance-center-tour">WWE Performance Center</a></li>
-                      <li>
-                        <a href="">WWE Network</a>
-                        <ul>
-                          <li><a href="http://www.wwe.com/inside/overtheropes/wweinyourcorner/wmrc/wwe-books-read-across-america-2011">WWE Book</a></li>
-                          <li><a href="http://shop.wwe.com/">WWE Shop</a></li>
-                          <li><a href="#">WWE Jet Services</a></li>
-                          <li><a href="http://www.wwe.com/classics/inside-video-vault-photos">WWE Library</a></li>
-                          <!-- <li><a href="#">Veroeros feugiat</a></li> -->
-                        </ul>
-                      </li>
-                      <li><a href="http://www.wwe.com/">WCW Inc.</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="http://www.wwe.com/events">Events</a></li>
-                  <li><a href="http://corporate.wwe.com/">Partners</a></li>
-                  <li>
-<!--                       <form action='/oauth' method='post'>
-                        <a>
-                          <input type="submit" name="login" value="login">
-                        </a>
-                      </form> -->
-                  </li>
-                </ul>
-              </nav>
-  
-          </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Bootstrap contact form with PHP example by BootstrapBay.com.">
+    <meta name="author" content="BootstrapBay.com">
+    <title>Blue Media</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link href="boostrap/css/custom.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.php"><img id="logo" src="/public/images/placeholder.png.png"> Blue Media</a>
+            </div>
         </div>
-        
-      <!-- Banner -->
-        <div id="banner" class="footerTopPadding">
-          <section class="container containerpadding">
+    </div>
 
-            <!-- <a class="btn-primary largeText" href="#openModal">Request Access</a> -->
-<!--             <div class="requestLeftPadding">
-              <a type="button" class="btn btn-primary btn-lg btncolor noUnderline" href="#openModal">Request Access</a>
-            </div> -->
-            <div id="openModal" class="modalDialog">
-              <div>
-                <!-- <button type="button" class="btn btn-primary btn-lg btncolor">Request Access</button> -->
-                <a href="#" id="close" title="Exit" class="close" data-dismiss-"modal">X</a>
-                  <div class="txtFontColor">
-                    <h3>Select Group</h3>
-                    <p><font size="2">You will be asked to verify your email in order to
-                       gain access to media content packaged for your affiliation. 
-                       Thank you!</font> 
-                    </p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h1 class="page-header text-center">Give us a chance?</h1>
+            <h4 class="text-center">Please Provide Your Contact Information Below</h4><br>
+            <form class="form-horizontal" role="form" method="post" action="uploadfile.php">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="First & Last Name" value="">
                     </div>
-                  <!-- Dropdown styling -->
-                  <div class="dropdown">
-                    <button href="openModal2" class="btn btn-default dropdown-toggle dropdownHeight dropdownColor" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                      Affiliation
-                      <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                      <form>
-                      <li role="presentation"><a href="#openModal2" id="request" role="menuitem" tabindex="-1">Cable</a></li>
-                    </form>
-                      <li role="presentation"><a href="#openModal3" id="request" role="menuitem" tabindex="-1">Satelite</a></li>
-
-                      <li role="presentation"><a href="#openModal4" id="request" role="menuitem" tabindex="-1">Telco</a></li>
-
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">TV</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Ad Agency</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Marketing/Creative Provider</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Radio Station</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">WWE Employee</a></li>
-                      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Other</a></li>
-                    </ul>
-                  </div>
-              </div>
-            </div>
-
-            <!-- open second modal for Cable-->
-            <div id="openModal2" class="modalDialog backgroundColor">
-              <div>
-                <a href="#" id="close" title="Exit" class="close" data-dismiss-"modal">X</a>
-                <div class="txtFontColor">
-                  <h3>Client Info</h3>
                 </div>
-
-
-
-                  <form action='/collab' method='get' class="form-inline well modalBackground">
-                    <div class="txtFontColor">
-                      <h3>First Name</h3>
+                <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="">
                     </div>
-                      <input type="text" name='name' placeholder="John" autofocus>
-                    <div class="txtFontColor">
-                      <h3>Email</h3>
-                    </div>
-                      <input type="text" name='username' placeholder="user@example.com" autofocus>
-                      <div class="verifyPadding verifyButton">
-                        <input class="btn btn-primary btn-lg btncolor noUnderline btn-small verifyButton" type='submit' value='Verify'>
-                      </div>
-                  </form>
-
-
-
-
-
-
-              </div>
-            </div>
-
-            <!-- open modal for Satelite -->
-            <div id="openModal3" class="modalDialog backgroundColor">
-              <div>
-                <a href="#" id="close" title="Exit" class="close" data-dismiss-"modal">X</a>
-                <div class="txtFontColor">
-                  <h3>Client Info</h3>
                 </div>
-                  
-                  <form action='/Satelite' method='get' class="form-inline well">
-                    <div class="txtFontColor">
-                      <h3>First Name</h3>
+                <div class="form-group">
+                    <label for="message" class="col-sm-2 control-label">Message</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="4" name="message" placeholder="What can we do to blow your mind?"></textarea>
                     </div>
-                    <input type="text" name='name' placeholder="John" autofocus>
-                    <div class="txtFontColor">
-                      <h3>Email</h3>
-                    </div>
-                      <input type="text" name='username' placeholder="username" autofocus>
-                      <div class="verifyPadding verifyButton">
-                        <input class="btn btn-primary btn-lg btncolor noUnderline btn-small verifyButton" type='submit' value='Verify'>
-                      </div>                  
-                  </form>
-              </div>
-            </div>
-
-            <!-- open modal for Telco -->
-            <div id="openModal4" class="modalDialog backgroundColor"> 
-              <div>
-                <a href="#" id="close" title="Exit" class="close" data-dismiss-"modal">X</a>
-                <div class="txtFontColor">
-                  <h3>Client Info</h3>
                 </div>
-                  <form action='/Telco' method='get' class="form-inline well">
-                      <div class="txtFontColor">
-                      <h3>First Name</h3>
+                <div class="form-group">
+                    <label for="human" class="col-sm-2 control-label">2 + 3 = ?</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
                     </div>
-                    <input type="text" name='name' placeholder="John" autofocus>
-                    <div class="txtFontColor">
-                      <h3>Email</h3>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <input id="submit" name="submit" type="submit" value="Word Up" class="btn btn-primary">
                     </div>
-                      <input type="text" name='username' placeholder="username" autofocus>
-                      <div class="verifyPadding verifyButton">
-                        <input class="btn btn-primary btn-lg btncolor noUnderline btn-small verifyButton" type='submit' value='Verify'>
-                      </div>                      
-                  </form>
-              </div> 
-            </div>
-          </section>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <?php echo $result; ?>
+                    </div>
+                </div>
+            </form>
         </div>
-      </div>
-    
-  <!-- Footer -->
-
-    <script>
-          $('#request').on("click",function(){
-                $('#openModal').modal('hide');
-                $('#openModal2').modal('show');
-          });
-
-          $('#exitButton').on("click", function(){
-                $('#openModal2').modal('hide');
-
-          });
-
-          $('#close').on("click", function(){
-                $('#openModal2').modal('hide');
-          });
-
-          function userEmail(){
-              var input = document.getElementById("userInput").value;
-              console.log(input);
-              puts(cable, input)
-          }
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </script>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
