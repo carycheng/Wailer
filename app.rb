@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'sinatra'
 require 'boxr'
+require 'dotenv'; Dotenv.load(".env")
 
 configure do
   enable :sessions
@@ -48,6 +49,23 @@ end
 #   collaboration = client.add_collaboration('3536701079', {id: '235248328', type: :user}, :viewer_uploader)
 #   # expect(collaboration.accessible_by.id).to eq('235248328')
 # end
+ 
+post '/oauth' do
+  oauth_url = Boxr::oauth_url(URI.encode_www_form_component('security_token%3DKnhMJatFipTAnM0nHlZA'))
+  redirect(oauth_url)
+end 
+
+get '/login' do 
+  params = request.env['rack.request.query_hash']
+  oauth2_token = params['code'];
+
+  code = Boxr::get_tokens(oauth2_token, grant_type: "authorization_code", assertion: nil, scope: nil, username: nil, client_id: ENV['BOX_CLIENT_ID'], client_secret: ENV['BOX_CLIENT_SECRET'])
+
+  client = Boxr::Client.new(code.access_token)
+
+  
+end 
+
 
 get '/' do
   @notes = Note.all :order => :id.desc
