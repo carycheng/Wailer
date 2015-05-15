@@ -29,6 +29,51 @@ get '/login/form' do
   erb :login_form
 end
 
+post '/submit' do 
+
+  companyName = params[:company]
+  info = params[:info]
+
+  # create new client object
+  token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
+  client = Boxr::Client.new(ENV['DEV_TOKEN'], 
+    refresh_token: ENV['REFRESH_TOKEN'], 
+    client_id: ENV['BOX_CLIENT_ID'], 
+    client_secret: ENV['BOX_CLIENT_SECRET'], 
+    &token_refresh_callback)
+  items = client.folder_items(Boxr::ROOT)
+
+  # Create new company folder
+  path = '/Sales/Company-Leads'
+  folder = client.folder_from_path(path)
+  new_folder = client.create_folder(companyName, folder)
+
+  # create and populate new file
+  file = File.open('lead-information.docx', 'w')
+  file.puts "Company: #{params[:company]}"
+  file.puts "Name: #{params[:name]}"
+  file.puts "Email: #{params[:email]}"
+  file.puts "Message: #{params[:message]}"
+  file.puts
+  file.puts
+  file.puts "SDR Call Notes: "
+  file.close
+
+
+  # upload new file, then remove from local dir
+  uploaded_file = client.upload_file('./lead-information.docx', new_folder)
+  File.delete('./lead-information.docx')
+
+
+  # create task for Andy Dufresne
+  task = client.create_task(uploaded_file, action: :review, message: "Please review, thanks!", due_at: nil)
+  client.create_task_assignment(task, assign_to: "237685143", assign_to_login: nil)
+
+  File.new('views/thank_you.erb').readlines
+end
+
+
+
 post '/login/attempt' do
   session[:identity] = params['username']
   where_user_came_from = session[:previous_url] || '/'
@@ -51,7 +96,8 @@ end
 # end
  
 post '/oauth' do
-  oauth_url = Boxr::oauth_url(URI.encode_www_form_component('security_token%3DKnhMJatFipTAnM0nHlZA'))
+  state = 'security_token%3DKnhMJatFipTAnM0nHlZA'
+  oauth_url = Boxr::oauth_url(state, host: "app.box.com", response_type: "code", scope: nil, folder_id: nil, client_id: ENV['BOX_CLIENT_ID'])
   redirect(oauth_url)
 end 
 
@@ -60,10 +106,10 @@ get '/login' do
   oauth2_token = params['code'];
 
   code = Boxr::get_tokens(oauth2_token, grant_type: "authorization_code", assertion: nil, scope: nil, username: nil, client_id: ENV['BOX_CLIENT_ID'], client_secret: ENV['BOX_CLIENT_SECRET'])
-
   client = Boxr::Client.new(code.access_token)
 
-  
+
+  File.new('public/portal.html').readlines
 end 
 
 
