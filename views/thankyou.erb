@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+
+    #brand-image{
+        height: 50px;
+
+    }
+
+    h1 {
+        font-family: "Abel", Arial, sans-serif;
+        font-weight: 400;
+        font-size: 40px;
+    }
+
+    /* Override B3 .panel adding a subtly transparent background */
+    .panel {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+
+
+    #nicebg {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        /* Preserve aspet ratio */
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+</style>
+
+
+<head>
+
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bootstrap contact form with PHP example by BootstrapBay.com.">
+  <meta name="author" content="BootstrapBay.com">
+  <title>Blue Media</title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link href="boostrap/css/custom.css" rel="stylesheet">
+
+  <!-- Static navbar -->
+
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brandz">
+          <img id ="brand-image" alt="whale logo" src="http://i1066.photobucket.com/albums/u418/austinringer/whaletail_zpspo0m56qs.png" />
+        </a>
+      </div>
+    </div>
+  </div>
+</head>
+
+<body>
+
+<img src="http://i1066.photobucket.com/albums/u418/austinringer/res_original_zpsxtvy4wor.jpg" id="nicebg" alt="">
+
+
+
+<div id="img_container" class="indexColor">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 panel panel-default">
+        <h1 class="page-header text-center">Thanks for reaching out!</h1>
+        <h4 class="text-center">One of our awesome Marketing Consultants will give you a call within the next 24 hours. We look forward to learning
+        more about you and your marketing goals!</h4><br>
+        <form class="form-horizontal" role="form" method="post" action="/thankyou">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" name="name" placeholder="First & Last Name" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="company" class="col-sm-2 control-label">Company</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" name="name" placeholder="Where do you work?" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="email" name="email" placeholder="example@domain.com" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message" class="col-sm-2 control-label">Message</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" rows="4" name="message" placeholder="What can we do to blow your mind?"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="human" class="col-sm-2 control-label">2 + 3 = ?</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+              <input id="submit" name="submit" type="submit" value="Get Started" class="btn btn-primary">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="/vendor/jquery-1.9.1.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</div>
+
+</body>
+
+<footer>
+  <div class="container">
+    </c><h2 class="bs-docs-featurette-title">Why trust Blue Media?</h2>
+    <p class="lead">Bootstrap makes front-end web development faster and easier. It's made for folks of all skill levels, devices of all shapes, and projects of all sizes.</p>
+
+    <hr class="half-rule">
+
+    <div class="row">
+      <div class="col-sm-4">
+        <img src="http://i1066.photobucket.com/albums/u418/austinringer/beaker_zpskn4wtgff.png" alt="Sass and Less support" class="img-responsive">
+        <h3>Preprocessors</h3>
+        <p>Bootstrap ships with vanilla CSS, but its source code utilizes the two most popular CSS preprocessors, <a href="../css/#less">Less</a> and <a href="../css/#sass">Sass</a>. Quickly get started with precompiled CSS or build on the source.</p>
+      </div>
+      <div class="col-sm-4">
+        <img src="http://i1066.photobucket.com/albums/u418/austinringer/spaceship_zpsoda5wuqz.png" alt="Responsive across devices" class="img-responsive">
+        <h3>One framework, every device.</h3>
+        <p>Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries.</p>
+      </div>
+      <div class="col-sm-4">
+        <img src="http://i1066.photobucket.com/albums/u418/austinringer/sandwich_zpst57jx0fy.png" alt="Components" class="img-responsive">
+        <h3>Full of features</h3>
+        <p>With Bootstrap, you get extensive and beautiful documentation for common HTML elements, dozens of custom HTML and CSS components, and awesome jQuery plugins.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</html>

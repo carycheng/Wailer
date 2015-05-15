@@ -73,6 +73,10 @@ get '/' do
   erb :layout
 end
 
+get '/thankyou' do
+  erb :thankyou
+end
+
   get '/collab' do
     session[:identity] = params['username']
     token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
