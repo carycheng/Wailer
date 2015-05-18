@@ -55,7 +55,7 @@ post '/submit' do
   file.puts "Name: #{params[:name]}"
   file.puts "Email: #{params[:email]}"
   file.puts "Message: #{params[:message]}"
-  file.puts
+  file.puts "Phone Number: #{params[:phone]}"
   file.puts
   file.puts "SDR Call Notes: "
   file.close
