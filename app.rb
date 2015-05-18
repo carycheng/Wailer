@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'boxr'
 require 'dotenv'; Dotenv.load(".env")
+require 'twilio-ruby'
 
 configure do
   enable :sessions
@@ -59,20 +60,42 @@ post '/submit' do
   file.puts "SDR Call Notes: "
   file.close
 
-
   # upload new file, then remove from local dir
   uploaded_file = client.upload_file('./lead-information.docx', new_folder)
   File.delete('./lead-information.docx')
-
 
   # create task for Andy Dufresne
   task = client.create_task(uploaded_file, action: :review, message: "Please review, thanks!", due_at: nil)
   client.create_task_assignment(task, assign_to: "237685143", assign_to_login: nil)
 
+#   # Twilio API Call
+#   account_sid = "AC4c44fc31f1d7446784b3e065f92eb4e6"
+#   auth_token = "5ad821b20cff339979cd0a9d42e1a05d"
+#   client = Twilio::REST::Client.new account_sid, auth_token
+#
+#   from = "+14087695509" # Your Twilio number
+#
+#   friends = {
+# # "+16504171570" => "Cary",
+# # "+18053451948" => "Joann",
+# # "+15615122265" => "Austin",
+# "+16502797331" => "Matt",
+# #"+16504501439" => "Jane",
+# "+16504171570" => "Cary",
+# "+16613404762" => "Jared"
+#   }
+#   friends.each do |key, value|
+#     client.account.messages.create(
+#         :from => from,
+#         :to => key,
+#         :body => "Hey #{value}, heads up! A new opportunity has submitted a form on the '/emailblast' landing page. Please follow up on this! AKA Our app
+# works"
+#     )
+#     puts "Sent message to #{value}"
+#   end
+
   File.new('views/thank_you.erb').readlines
 end
-
-
 
 post '/login/attempt' do
   session[:identity] = params['username']
@@ -120,7 +143,7 @@ get '/' do
 end
 
 get '/thankyou' do
-  erb :thankyou
+  File.new('views/thank_you.erb').readlines
 end
 
   get '/collab' do

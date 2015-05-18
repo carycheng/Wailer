@@ -1,1 +1,118 @@
-<h1>Thank you!</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+
+<style>
+    #brand-image{
+        height: 50px;
+
+    }
+
+    h1 {
+        font-family: "Abel", Arial, sans-serif;
+        font-weight: 400;
+        font-size: 40px;
+    }
+
+    /* Override B3 .panel adding a subtly transparent background */
+    .panel {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        height: 30px;
+        width: 100%;
+        background-color: white;
+        z-index: 0;
+
+    }
+
+    #nicebg {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        /* Preserve aspet ratio */
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    #navbutton {
+        padding-top: 0px;
+    }
+
+    #smiley {
+        margin-left: auto ;
+        margin-right: auto;
+        padding-top: 15px;
+        padding-bottom: -15px;
+        width:20%;
+        height:20%;
+    }
+
+    #navbutton {
+        margin-top: 10px;
+        padding-top: 3px;
+    }
+
+</style>
+
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bootstrap contact form with PHP example by BootstrapBay.com.">
+  <meta name="author" content="BootstrapBay.com">
+  <title>Blue Media</title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link href="boostrap/css/custom.css" rel="stylesheet">
+
+  <!-- Static navbar -->
+
+  <div class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brandz">
+          <img id ="brand-image" alt="whale logo" src="http://i1066.photobucket.com/albums/u418/austinringer/whaletail_zpspo0m56qs.png" />
+        </a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <button type="button" id="navbutton" class="btn btn-success">Already a Customer?</button>
+      </ul>
+    </div>
+  </div>
+</head>
+
+<body>
+<img src="http://i1066.photobucket.com/albums/u418/austinringer/res_original_zpsxtvy4wor.jpg" id="nicebg" alt="">
+<div id="img_container" class="indexColor">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 panel panel-default">
+        <div class="row text-center">
+          <img id="smiley" src="http://i1066.photobucket.com/albums/u418/austinringer/smiley_zpshhrothdv.png" />
+        </div>
+        <h1 class="page-header text-center">Thanks for reaching out!</h1>
+        <h4 class="text-center"\>You can expect a phone call from one of our Marketing Consultants within the next 24 hours.</h4 class="text-center"\>
+        <p><h4 class="text-center"\>We look forward to
+        learning about you and your company and exploring how we can help you. Feel free to call us at <a href="tel:555-555-1212">202-555-1212</a> if you would like to talk even sooner.</h4></p>
+        <br>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="/vendor/jquery-1.9.1.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+</div>
+</body>
+</html>

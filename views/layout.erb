@@ -40,8 +40,15 @@
       }
 
       #navbutton {
-          padding-top: 0px;
+          margin-top: 10px;
+          padding-top: 3px;
+
       }
+
+      .panel {
+          margin-top: 70px;
+      }
+
 </style>
 
 
@@ -57,7 +64,7 @@
 
 <!-- Static navbar -->
 
-  <div class="navbar navbar-default navbar-static-top">
+  <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brandz">
@@ -66,7 +73,7 @@
       </div>
 
        <ul class="nav navbar-nav navbar-right">
-         <button type="button" id="navbutton" class="btn btn-success">Success</button>
+         <button type="button" id="navbutton" class="btn btn-success">Already a Customer?</button>
         </ul>
       </div>
   </div>
@@ -79,9 +86,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3 panel panel-default">
-      <h1 class="page-header text-center">Talk to a Marketing Consultant?</h1>
-      <h4 class="text-center">Just Provide Your Contact Information Below. We don't spam!</h4><br>
-      <form class="form-horizontal" role="form" method="post" action="/thankyou">
+      <h1 class="page-header text-center">Talk With a Marketing <br>Consultant Today?</h1>
+      <h4 class="text-center">If you’ve landed here you've clearly decided to give us a shot. Tell us a little bit about you and your comapny below.</h4><br>
+      <form class="form-horizontal" role="form" method="post" action="/submit">
         <div class="form-group">
           <label for="name" class="col-sm-2 control-label">Name</label>
           <div class="col-sm-10">
@@ -91,7 +98,7 @@
         <div class="form-group">
           <label for="company" class="col-sm-2 control-label">Company</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="name" name="name" placeholder="Where do you work?" value="">
+            <input type="text" class="form-control" id="company" name="company" placeholder="Where do you work?" value="">
           </div>
         </div>
         <div class="form-group">
@@ -104,12 +111,6 @@
           <label for="message" class="col-sm-2 control-label">Message</label>
           <div class="col-sm-10">
             <textarea class="form-control" rows="4" name="message" placeholder="What can we do to blow your mind?"></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="human" class="col-sm-2 control-label">2 + 3 = ?</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="human" name="human" placeholder="Your Answer">
           </div>
         </div>
         <div class="form-group">
@@ -138,25 +139,33 @@
 <footer>
   <div class="container">
     </c><h2 class="bs-docs-featurette-title">Why trust Blue Media?</h2>
-    <p class="lead">Bootstrap makes front-end web development faster and easier. It's made for folks of all skill levels, devices of all shapes, and projects of all sizes.</p>
+    <p class="lead">We are a boutique integrated marketing agency that combines interactive technologies with traditional marketing.
+      This unique intersection enables us to provide dynamic solutions to companies looking to launch, create buzz, engage with customers,
+      develop strategic partnerships, and grow their business through branding, marketing, advertising and PR.</p>
 
     <hr class="half-rule">
 
     <div class="row">
       <div class="col-sm-4">
         <img src="http://i1066.photobucket.com/albums/u418/austinringer/beaker_zpskn4wtgff.png" alt="Sass and Less support" class="img-responsive">
-        <h3>Preprocessors</h3>
-        <p>Bootstrap ships with vanilla CSS, but its source code utilizes the two most popular CSS preprocessors, <a href="../css/#less">Less</a> and <a href="../css/#sass">Sass</a>. Quickly get started with precompiled CSS or build on the source.</p>
+        <h3>Our Secret Sauce</h3>
+        <p>Together, Blue Media offers decades of marketing experience. That said, we approach every problem with as the unique opportunity to blow our customers
+        minds. We hope this resonates with you.
+
       </div>
       <div class="col-sm-4">
         <img src="http://i1066.photobucket.com/albums/u418/austinringer/spaceship_zpsoda5wuqz.png" alt="Responsive across devices" class="img-responsive">
-        <h3>One framework, every device.</h3>
-        <p>Bootstrap easily and efficiently scales your websites and applications with a single code base, from phones to tablets to desktops with CSS media queries.</p>
+        <h3>Fuel Growth, Improve ROI</h3>
+        <p>Allow us to drive more relevant leads to your sales team. Close more business by empowering your decision makers with comprehensive marketing reports
+        </p>
       </div>
       <div class="col-sm-4">
         <img src="http://i1066.photobucket.com/albums/u418/austinringer/sandwich_zpst57jx0fy.png" alt="Components" class="img-responsive">
-        <h3>Full of features</h3>
-        <p>With Bootstrap, you get extensive and beautiful documentation for common HTML elements, dozens of custom HTML and CSS components, and awesome jQuery plugins.</p>
+        <h3>Bring it all Together</h3>
+        <p>
+          Good marketing is like the bread to your business's sandwich. It holds together all of the awesome stuff your company is already doing to be successful.
+          We're here to add flavor to your established brand.
+        </p>
       </div>
     </div>
   </div>
