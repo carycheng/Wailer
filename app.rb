@@ -83,8 +83,8 @@ post '/submit' do
 #"+16504501439" => "Jane",
 # "+16504171570" => "Cary",
 # "+16613404762" => "Jared"
-"+18052188632" => "David Lasher",
- "+16504547616" => "ZT"
+# "+18052188632" => "David Lasher",
+# "+16504547616" => "ZT"
   }
   friends.each do |key, value|
     client.account.messages.create(
