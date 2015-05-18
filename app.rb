@@ -30,18 +30,18 @@ get '/login/form' do
   erb :login_form
 end
 
-post '/submit' do 
+post '/submit' do
 
   companyName = params[:company]
   info = params[:info]
 
   # create new client object
   token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-  client = Boxr::Client.new(ENV['DEV_TOKEN'], 
-    refresh_token: ENV['REFRESH_TOKEN'], 
-    client_id: ENV['BOX_CLIENT_ID'], 
-    client_secret: ENV['BOX_CLIENT_SECRET'], 
-    &token_refresh_callback)
+  client = Boxr::Client.new(ENV['DEV_TOKEN'],
+                            refresh_token: ENV['REFRESH_TOKEN'],
+                            client_id: ENV['BOX_CLIENT_ID'],
+                            client_secret: ENV['BOX_CLIENT_SECRET'],
+                            &token_refresh_callback)
   items = client.folder_items(Boxr::ROOT)
 
   # Create new company folder
@@ -93,7 +93,7 @@ post '/submit' do
         :body => "Hey #{value}, heads up! A new opportunity has submitted a form on the '/emailblast' landing page. Please follow up on this!"
     )
     puts "Sent message to #{value}"
-   end
+  end
 
   File.new('views/thank_you.erb').readlines
 end
@@ -118,14 +118,14 @@ end
 #   collaboration = client.add_collaboration('3536701079', {id: '235248328', type: :user}, :viewer_uploader)
 #   # expect(collaboration.accessible_by.id).to eq('235248328')
 # end
- 
+
 post '/oauth' do
   state = 'security_token%3DKnhMJatFipTAnM0nHlZA'
   oauth_url = Boxr::oauth_url(state, host: "app.box.com", response_type: "code", scope: nil, folder_id: nil, client_id: ENV['BOX_CLIENT_ID'])
   redirect(oauth_url)
-end 
+end
 
-get '/login' do 
+get '/login' do
   params = request.env['rack.request.query_hash']
   oauth2_token = params['code'];
 
@@ -134,7 +134,7 @@ get '/login' do
 
 
   File.new('public/portal.html').readlines
-end 
+end
 
 
 get '/' do
@@ -147,26 +147,26 @@ get '/thankyou' do
   File.new('views/thank_you.erb').readlines
 end
 
-  get '/collab' do
-    session[:identity] = params['username']
-    token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-    client = Boxr::Client.new('fw4U4Vn83nQwuTZ88eJ5EI7C0fZqEuN0', 
+get '/collab' do
+  session[:identity] = params['username']
+  token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
+  client = Boxr::Client.new('fw4U4Vn83nQwuTZ88eJ5EI7C0fZqEuN0',
                             refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
                             client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
                             client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
                             &token_refresh_callback)
-    collaboration = client.add_collaboration('3536701079', {login: session[:identity], type: :user}, :viewer)
-    File.new('public/portal.html').readlines
-  end
+  collaboration = client.add_collaboration('3536701079', {login: session[:identity], type: :user}, :viewer)
+  File.new('public/portal.html').readlines
+end
 
 get '/Satelite' do
   session[:identity] = params['username']
   token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-  client = Boxr::Client.new('fw4U4Vn83nQwuTZ88eJ5EI7C0fZqEuN0', 
-                          refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
-                          client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
-                          client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
-                          &token_refresh_callback)
+  client = Boxr::Client.new('fw4U4Vn83nQwuTZ88eJ5EI7C0fZqEuN0',
+                            refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
+                            client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
+                            client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
+                            &token_refresh_callback)
   collaboration = client.add_collaboration('3551269279', {login: session[:identity], type: :user}, :viewer)
   File.new('public/satelite_portal.html').readlines
 end
@@ -174,11 +174,11 @@ end
 get '/Telco' do
   session[:identity] = params['username']
   token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-  client = Boxr::Client.new('fw4U4Vn83nQwuTZ88eJ5EI7C0fZqEuN0', 
-                          refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
-                          client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
-                          client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
-                          &token_refresh_callback)
+  client = Boxr::Client.new('fw4U4Vn83nQwuTZ88eJ5EI7C0fZqEuN0',
+                            refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
+                            client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
+                            client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
+                            &token_refresh_callback)
   collaboration = client.add_collaboration('3551271557', {login: session[:identity], type: :user}, :viewer)
   File.new('public/telco_portal.html').readlines
 end
