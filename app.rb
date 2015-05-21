@@ -12,17 +12,6 @@ MAX_REFRESH_TIME = 1800
 $tokens = nil
 $prevTime = 1
 
-=begin
-scheduler = Rufus::Scheduler.new
-
-scheduler.in '15s' do
-  puts 'Hello... Rufus'
-  File.new('views/layout.erb').readlines
-end
-
-scheduler.join
-=end
-
 get '/' do
   erb 'Can you handle a <a href="/secure/place">secret</a>?'
 end
