@@ -3,45 +3,61 @@ require 'sinatra'
 require 'boxr'
 require 'dotenv'; Dotenv.load(".env")
 require 'twilio-ruby'
+require 'awesome_print'
+require 'ap'
+require 'rufus-scheduler'
 
-configure do
-  enable :sessions
+MAX_REFRESH_TIME = 1800
+
+$tokens = nil
+$prevTime = 1
+
+=begin
+scheduler = Rufus::Scheduler.new
+
+scheduler.in '15s' do
+  puts 'Hello... Rufus'
+  File.new('views/layout.erb').readlines
 end
 
-helpers do
-  def username
-    session[:identity] ? session[:identity] : 'Hello stranger'
-  end
-end
-
-before '/secure/*' do
-  unless session[:identity]
-    session[:previous_url] = request.path
-    @error = 'Sorry, you need to be logged in to visit ' + request.path
-    halt erb(:login_form)
-  end
-end
+scheduler.join
+=end
 
 get '/' do
   erb 'Can you handle a <a href="/secure/place">secret</a>?'
 end
 
-get '/login/form' do
-  erb :login_form
-end
 
 post '/submit' do
 
   companyName = params[:company]
   info = params[:info]
 
-  # create new client object
-  token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-  client = Boxr::Client.new(ENV['DEV_TOKEN'],
-                            refresh_token: ENV['REFRESH_TOKEN'],
-                            client_id: ENV['BOX_CLIENT_ID'],
-                            client_secret: ENV['BOX_CLIENT_SECRET'],
-                            &token_refresh_callback)
+  # for debugging purposes to determine how long it's been since last refresh
+  timeDiff = Time.now.to_i - Integer($prevTime)
+  puts "Time diff: #{timeDiff}"
+
+  # if the program has just been launched, create new access token, else create new client obj
+  if($tokens && (Time.now.to_i - Integer($prevTime)) < MAX_REFRESH_TIME)
+    client = Boxr::Client.new(ENV['ACCESS_TOKEN'])
+  else
+    token_refresh_callback
+    client = Boxr::Client.new(ENV['ACCESS_TOKEN'])
+    $prevTime = Time.new.to_i
+    puts "Token expired or first token generation"
+  end
+
+
+  # if acces token has expired, called token_refresh_callbacK NOT USED ANYMORE!
+=begin
+  client = Boxr::Client.new(ENV['ACCESS_TOKEN'],
+                              refresh_token: ENV['REFRESH_TOKEN'],
+                              client_id: ENV['BOX_CLIENT_ID'],
+                              client_secret: ENV['BOX_CLIENT_SECRET'],
+                              &token_refresh_callback)
+=end
+
+  # get items in root folder
   items = client.folder_items(Boxr::ROOT)
 
   # Create new company folder
@@ -95,90 +111,78 @@ post '/submit' do
     puts "Sent message to #{value}"
   end
 
+  #erb :thank_you
   File.new('views/thank_you.erb').readlines
 end
 
-post '/login/attempt' do
-  session[:identity] = params['username']
-  where_user_came_from = session[:previous_url] || '/'
-  redirect to where_user_came_from
+# called when access token has expired, refreshes the access token
+def token_refresh_callback
+
+  # refresh the refresh/access tokens
+  $tokens = Boxr::refresh_tokens(ENV['REFRESH_TOKEN'], client_id: ENV['BOX_CLIENT_ID'], client_secret: ENV['BOX_CLIENT_SECRET'])
+
+  #ap $tokens
+
+  refresh_env_file($tokens.access_token, $tokens.refresh_token)
+
 end
 
-get '/logout' do
-  session.delete(:identity)
-  erb "<div class='alert alert-message'>Logged out</div>"
+
+#  method that replaces ENV file contents with new valid tokens
+def refresh_env_file(access, refresh)
+
+  # save local copy of client id/secret
+  clientId = ENV['BOX_CLIENT_ID']
+  clientSecret = ENV['BOX_CLIENT_SECRET']
+
+  # open ENV file and update with new valid tokens
+  file = File.open('.env', "r+")
+
+  file.puts "ACCESS_TOKEN=#{access}"
+  file.puts "REFRESH_TOKEN=#{refresh}"
+  file.puts "BOX_CLIENT_SECRET=#{clientSecret}"
+  file.puts "BOX_CLIENT_ID=#{clientId}"
+
+  puts "Tokens have been re-initialized"
+
+  file.close
 end
 
-get '/secure/place' do
-  erb 'This is a secret place that only <%=session[:identity]%> has access to!'
+
+# only need to call this once every 60 days, when refresh token expires
+get '/init_tokens' do
+
+  # Chad oauth code
+  oauth_url = Boxr::oauth_url(URI.encode_www_form_component('your-anti-forgery-token'))
+
+  puts "Copy the URL below and paste into a browser. Go through the OAuth flow using the desired Box account. \
+  When you are finished your browser will redirect to a 404 error page. This is expected behavior. Look at the URL in the address \
+  bar and copy the 'code' parameter value. Paste it into the prompt below. You only have 30 seconds to complete this task so be quick about it! \
+  You will then see your access token and refresh token."
+
+  puts
+  puts "URL:  #{oauth_url}"
+  puts
+
+  print "Enter the code: "
+  code = STDIN.gets.chomp.split('=').last
+
+  $tokens = Boxr::get_tokens(code)
+  ap $tokens
+
+  refresh_env_file($tokens.access_token, $tokens.refresh_token)
+
+  puts "Access/refresh tokens have been initialized"
+
 end
-
-# get '/collab' do
-#   client = Boxr::Client.new('u0wucRzbojFzmDQVuHxJ3FK8ngFMVmYZ')
-#   collaboration = client.add_collaboration('3536701079', {id: '235248328', type: :user}, :viewer_uploader)
-#   # expect(collaboration.accessible_by.id).to eq('235248328')
-# end
-
-post '/oauth' do
-  state = 'security_token%3DKnhMJatFipTAnM0nHlZA'
-  oauth_url = Boxr::oauth_url(state, host: "app.box.com", response_type: "code", scope: nil, folder_id: nil, client_id: ENV['BOX_CLIENT_ID'])
-  redirect(oauth_url)
-end
-
-get '/login' do
-  params = request.env['rack.request.query_hash']
-  oauth2_token = params['code'];
-
-  code = Boxr::get_tokens(oauth2_token, grant_type: "authorization_code", assertion: nil, scope: nil, username: nil, client_id: ENV['BOX_CLIENT_ID'], client_secret: ENV['BOX_CLIENT_SECRET'])
-  client = Boxr::Client.new(code.access_token)
-
-
-  File.new('public/portal.html').readlines
-end
-
 
 get '/' do
   @notes = Note.all :order => :id.desc
   @title = 'All Notes'
+
   erb :layout
 end
 
 get '/thankyou' do
   File.new('views/thank_you.erb').readlines
-end
-
-get '/collab' do
-  session[:identity] = params['username']
-  token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-  client = Boxr::Client.new('fw4U4Vn83nQwuTZ88eJ5EI7C0fZqEuN0',
-                            refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
-                            client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
-                            client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
-                            &token_refresh_callback)
-  collaboration = client.add_collaboration('3536701079', {login: session[:identity], type: :user}, :viewer)
-  File.new('public/portal.html').readlines
-end
-
-get '/Satelite' do
-  session[:identity] = params['username']
-  token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-  client = Boxr::Client.new('fw4U4Vn83nQwuTZ88eJ5EI7C0fZqEuN0',
-                            refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
-                            client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
-                            client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
-                            &token_refresh_callback)
-  collaboration = client.add_collaboration('3551269279', {login: session[:identity], type: :user}, :viewer)
-  File.new('public/satelite_portal.html').readlines
-end
-
-get '/Telco' do
-  session[:identity] = params['username']
-  token_refresh_callback = lambda {|access, refresh, identifier| some_method_that_saves_them(access, refresh)}
-  client = Boxr::Client.new('fw4U4Vn83nQwuTZ88eJ5EI7C0fZqEuN0',
-                            refresh_token: 'F5XkfJDIo8YpfUAabDSLXsOeWjyaUKdLSkIKqjyx9qL9L9i5qCjkxNBsw38qaccX',
-                            client_id: '4anv7jyvnf5spcpsotgqzus01dasap4j',
-                            client_secret: 'Nf5DamKEz7pVcFiVEWdZs7p7EHPkCXDa',
-                            &token_refresh_callback)
-  collaboration = client.add_collaboration('3551271557', {login: session[:identity], type: :user}, :viewer)
-  File.new('public/telco_portal.html').readlines
 end
