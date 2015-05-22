@@ -1,13 +1,9 @@
-WWE Portal
+"Custom Landing Page App" integrated with Box/Twilio
 ====
 
-Use it as a boilerplate to start your own apps.
+In order to enable SMS alerts, comment out mobile numbers in app.rb
 
-Sinatra + bootstrap directories downloaded from sinatra-bootstrap.
 
-Will update README later
-
-Go!
 ===
 
 Download and run WWE:
