@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require 'boxr'
 require 'dotenv'; Dotenv.load(".env")
-require 'twilio-ruby'
+#require 'twilio-ruby'
 require 'awesome_print'
 require 'ap'
 require 'rufus-scheduler'
@@ -73,6 +73,7 @@ post '/submit' do
   task = client.create_task(uploaded_file, action: :review, message: "Please review, thanks!", due_at: nil)
   client.create_task_assignment(task, assign_to: "237685143", assign_to_login: nil)
 
+=begin
   # Twilio API Call
   account_sid = "AC4c44fc31f1d7446784b3e065f92eb4e6"
   auth_token = "5ad821b20cff339979cd0a9d42e1a05d"
@@ -99,6 +100,7 @@ post '/submit' do
     )
     puts "Sent message to #{value}"
   end
+=end
 
   #erb :thank_you
   File.new('views/thank_you.erb').readlines
@@ -136,7 +138,6 @@ def refresh_env_file(access, refresh)
 
   file.close
 end
-
 
 # only need to call this once every 60 days, when refresh token expires
 get '/init_tokens' do
