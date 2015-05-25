@@ -16,6 +16,12 @@ get '/' do
   erb 'Can you handle a <a href="/secure/place">secret</a>?'
 end
 
+get '/' do
+  @notes = Note.all :order => :id.desc
+  @title = 'All Notes'
+
+  erb :layout
+end
 
 post '/submit' do
 
@@ -164,13 +170,6 @@ get '/init_tokens' do
 
   puts "Access/refresh tokens have been initialized"
 
-end
-
-get '/' do
-  @notes = Note.all :order => :id.desc
-  @title = 'All Notes'
-
-  erb :layout
 end
 
 get '/thankyou' do
