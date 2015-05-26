@@ -5,8 +5,8 @@ require 'boxr'
 require 'awesome_print'
 require 'ap'
 require 'rufus-scheduler'
-require 'dotenv'
-Dotenv.load(".env")
+#require 'dotenv'
+#Dotenv.load(".env")
 
 
 MAX_REFRESH_TIME = 1800
