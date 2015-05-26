@@ -2,11 +2,11 @@ require 'rubygems'
 require 'sinatra'
 require 'boxr'
 #require 'twilio-ruby'
-#require 'awesome_print'
-#require 'ap'
+require 'awesome_print'
+require 'ap'
 #require 'rufus-scheduler'
-#require 'dotenv'
-#Dotenv.load(".env")
+require 'dotenv'; Dotenv.load(".env")
+
 
 set :server, 'webrick'
 
