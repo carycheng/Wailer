@@ -40,33 +40,27 @@ post '/submit' do
 
   # if the program has just been launched, create new access token, else create new client obj
   if($tokens && (Time.now.to_i - Integer($prevTime)) < MAX_REFRESH_TIME)
-    client = Boxr::Client.new(accessToken)
     puts "Client obj created"
   else
     token_refresh_callback
-    client = Boxr::Client.new(accessToken)
     $prevTime = Time.new.to_i
     puts "Token expired or first token generation"
   end
 
-
-  # if acces token has expired, called token_refresh_callbacK NOT USED ANYMORE!
-=begin
-  client = Boxr::Client.new(ENV['ACCESS_TOKEN'],
-                              refresh_token: ENV['REFRESH_TOKEN'],
-                              client_id: ENV['BOX_CLIENT_ID'],
-                              client_secret: ENV['BOX_CLIENT_SECRET'],
-                              &token_refresh_callback)
-=end
+  # create client
+  @client = Boxr::Client.new(accessToken)
 
   # get items in root folder
   #items = client.folder_items(Boxr::ROOT)
 
+  puts "ACCESS_TOKEN=#{accessToken}"
+
   # Create new company folder
-  folder = client.folder_from_path(path)
+  folder = @client.folder_from_path(path)
 
-  checkFolder = client.folder_items(folder)
+  checkFolder = @client.folder_items(folder)
 
+  # see if company folder already exists
   checkFolder.each do |item|
     #puts item.name
 
@@ -80,7 +74,7 @@ post '/submit' do
 
   if(!folderExists)
 
-    new_folder = client.create_folder(companyName, folder)
+    new_folder = @client.create_folder(companyName, folder)
 
     # create and populate new file
     file = File.open('lead-information.docx', 'w')
@@ -94,12 +88,12 @@ post '/submit' do
     file.close
 
     # upload new file, then remove from local dir
-    uploaded_file = client.upload_file('./lead-information.docx', new_folder)
+    uploaded_file = @client.upload_file('./lead-information.docx', new_folder)
     File.delete('./lead-information.docx')
 
     # create task for Andy Dufresne
-    task = client.create_task(uploaded_file, action: :review, message: "Please review, thanks!", due_at: nil)
-    client.create_task_assignment(task, assign_to: "237685143", assign_to_login: nil)
+    task = @client.create_task(uploaded_file, action: :review, message: "Please review, thanks!", due_at: nil)
+    @client.create_task_assignment(task, assign_to: "237685143", assign_to_login: nil)
 
 =begin
     # Twilio API Call
