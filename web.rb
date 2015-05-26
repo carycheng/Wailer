@@ -145,6 +145,13 @@ def refresh_env_file(access, refresh)
 
   puts "Tokens have been re-initialized"
 
+  # for debugging 
+  puts "ACCESS_TOKEN=#{access}"
+  puts "REFRESH_TOKEN=#{refresh}"
+  puts "BOX_CLIENT_SECRET=#{clientSecret}"
+  puts "BOX_CLIENT_ID=#{clientId}"
+
+
   file.close
 end
 
