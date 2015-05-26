@@ -1,4 +1,4 @@
-Dotenv.load(".env")
+#Dotenv.load(".env")
 
 
 MAX_REFRESH_TIME = 1800
