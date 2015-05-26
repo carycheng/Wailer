@@ -118,6 +118,12 @@ end
 # called when access token has expired, refreshes the access token
 def token_refresh_callback
 
+  # for debugging 
+  puts "ACCESS_TOKEN=#{access}"
+  puts "REFRESH_TOKEN=#{refresh}"
+  puts "BOX_CLIENT_SECRET=#{clientSecret}"
+  sputs "BOX_CLIENT_ID=#{clientId}"
+  
   # refresh the refresh/access tokens
   $tokens = Boxr::refresh_tokens(ENV['REFRESH_TOKEN'], client_id: ENV['BOX_CLIENT_ID'], client_secret: ENV['BOX_CLIENT_SECRET'])
 
@@ -144,12 +150,6 @@ def refresh_env_file(access, refresh)
   file.puts "BOX_CLIENT_ID=#{clientId}"
 
   puts "Tokens have been re-initialized"
-
-  # for debugging 
-  puts "ACCESS_TOKEN=#{access}"
-  puts "REFRESH_TOKEN=#{refresh}"
-  puts "BOX_CLIENT_SECRET=#{clientSecret}"
-  puts "BOX_CLIENT_ID=#{clientId}"
 
 
   file.close
