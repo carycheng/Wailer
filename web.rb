@@ -16,11 +16,6 @@ $tokens = nil
 $prevTime = 1
 
 get '/' do
-  "Hello, world"
-end
-
-=begin
-get '/' do
   erb 'Can you handle a <a href="/secure/place">secret</a>?'
 end
 
@@ -30,7 +25,7 @@ get '/' do
 
   erb :layout
 end
-=end
+
 post '/submit' do
 
   companyName = params[:company]
