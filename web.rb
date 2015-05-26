@@ -40,6 +40,7 @@ post '/submit' do
 
   # if the program has just been launched, create new access token, else create new client obj
   if($tokens && (Time.now.to_i - Integer($prevTime)) < MAX_REFRESH_TIME)
+    token_refresh_callback
     puts "Client obj created"
   else
     token_refresh_callback
