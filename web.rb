@@ -8,6 +8,7 @@ require 'boxr'
 #require 'dotenv'
 #Dotenv.load(".env")
 
+set :server, 'webrick'
 
 MAX_REFRESH_TIME = 1800
 
