@@ -122,7 +122,7 @@ def token_refresh_callback
   puts "ACCESS_TOKEN=#{ENV['ACCESS_TOKEN']}"
   puts "REFRESH_TOKEN=#{ENV['REFRESH_TOKEN']}"
   puts "BOX_CLIENT_SECRET=#{ENV['BOX_CLIENT_SECRET']}"
-  sputs "BOX_CLIENT_ID=#{ENV['BOX_CLIENT_ID']}"
+  puts "BOX_CLIENT_ID=#{ENV['BOX_CLIENT_ID']}"
 
   # refresh the refresh/access tokens
   $tokens = Boxr::refresh_tokens(ENV['REFRESH_TOKEN'], client_id: ENV['BOX_CLIENT_ID'], client_secret: ENV['BOX_CLIENT_SECRET'])
