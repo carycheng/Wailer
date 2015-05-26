@@ -2,11 +2,11 @@ require 'rubygems'
 require 'sinatra'
 require 'boxr'
 #require 'twilio-ruby'
-require 'awesome_print'
-require 'ap'
-require 'rufus-scheduler'
-require 'dotenv'
-Dotenv.load(".env")
+#require 'awesome_print'
+#require 'ap'
+#require 'rufus-scheduler'
+#require 'dotenv'
+#Dotenv.load(".env")
 
 
 MAX_REFRESH_TIME = 1800
