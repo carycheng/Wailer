@@ -8,6 +8,7 @@ GEM
       httpclient (~> 2.5)
       jwt (~> 1.4)
       oj (~> 2.11)
+    dotenv (2.0.1)
     hashie (3.4.1)
     httpclient (2.6.0.1)
     jwt (1.4.1)
@@ -26,4 +27,5 @@ PLATFORMS
 
 DEPENDENCIES
   boxr
+  dotenv
   sinatra
