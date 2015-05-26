@@ -1,22 +1,20 @@
 require 'rubygems'
 require 'sinatra'
 require 'boxr'
-require 'dotenv'; Dotenv.load(".env")
 #require 'twilio-ruby'
 require 'awesome_print'
 require 'ap'
-require 'rufus-scheduler'
+#require 'rufus-scheduler'
+require 'dotenv'; Dotenv.load(".env")
+
+
+set :server, 'webrick'
 
 MAX_REFRESH_TIME = 1800
 
 $tokens = nil
 $prevTime = 1
 
-get '/' do
-  "Hello, world"
-end
-
-=begin
 get '/' do
   erb 'Can you handle a <a href="/secure/place">secret</a>?'
 end
@@ -27,11 +25,14 @@ get '/' do
 
   erb :layout
 end
-=end
+
 post '/submit' do
 
   companyName = params[:company]
   info = params[:info]
+  folderExists = false
+  path = '/Sales/Company-Leads'
+  accessToken = ENV['ACCESS_TOKEN']
 
   # for debugging purposes to determine how long it's been since last refresh
   timeDiff = Time.now.to_i - Integer($prevTime)
@@ -39,79 +40,92 @@ post '/submit' do
 
   # if the program has just been launched, create new access token, else create new client obj
   if($tokens && (Time.now.to_i - Integer($prevTime)) < MAX_REFRESH_TIME)
-    client = Boxr::Client.new(ENV['ACCESS_TOKEN'])
+    puts "Client obj created"
   else
     token_refresh_callback
-    client = Boxr::Client.new(ENV['ACCESS_TOKEN'])
     $prevTime = Time.new.to_i
     puts "Token expired or first token generation"
   end
 
-
-  # if acces token has expired, called token_refresh_callbacK NOT USED ANYMORE!
-=begin
-  client = Boxr::Client.new(ENV['ACCESS_TOKEN'],
-                              refresh_token: ENV['REFRESH_TOKEN'],
-                              client_id: ENV['BOX_CLIENT_ID'],
-                              client_secret: ENV['BOX_CLIENT_SECRET'],
-                              &token_refresh_callback)
-=end
+  # create client
+  client = Boxr::Client.new(accessToken)
 
   # get items in root folder
-  items = client.folder_items(Boxr::ROOT)
+  #items = client.folder_items(Boxr::ROOT)
+
+  #puts "ACCESS_TOKEN=#{accessToken}"
 
   # Create new company folder
-  path = '/Sales/Company-Leads'
   folder = client.folder_from_path(path)
-  new_folder = client.create_folder(companyName, folder)
 
-  # create and populate new file
-  file = File.open('lead-information.docx', 'w')
-  file.puts "Company: #{params[:company]}"
-  file.puts "Name: #{params[:name]}"
-  file.puts "Email: #{params[:email]}"
-  file.puts "Message: #{params[:message]}"
-  file.puts "Phone Number: #{params[:phone]}"
-  file.puts
-  file.puts "SDR Call Notes: "
-  file.close
+  checkFolder = client.folder_items(folder)
 
-  # upload new file, then remove from local dir
-  uploaded_file = client.upload_file('./lead-information.docx', new_folder)
-  File.delete('./lead-information.docx')
+  # see if company folder already exists. If it does, just redirect
+  checkFolder.each do |item|
+    #puts item.name
 
-  # create task for Andy Dufresne
-  task = client.create_task(uploaded_file, action: :review, message: "Please review, thanks!", due_at: nil)
-  client.create_task_assignment(task, assign_to: "237685143", assign_to_login: nil)
+    if(item.name == companyName)
+      folderExists = true
+      puts "Error: Folder with that name already exists"
+    end
+
+  end
+
+
+  if(!folderExists)
+
+    new_folder = client.create_folder(companyName, folder)
+
+    # create and populate new file
+    file = File.open('lead-information.docx', 'w')
+    file.puts "Company: #{params[:company]}"
+    file.puts "Name: #{params[:name]}"
+    file.puts "Email: #{params[:email]}"
+    file.puts "Message: #{params[:message]}"
+    file.puts "Phone Number: #{params[:phone]}"
+    file.puts
+    file.puts "SDR Call Notes: "
+    file.close
+
+    # upload new file, then remove from local dir
+    uploaded_file = client.upload_file('./lead-information.docx', new_folder)
+    File.delete('./lead-information.docx')
+
+    # create task for Andy Dufresne
+    task = client.create_task(uploaded_file, action: :review, message: "Please review, thanks!", due_at: nil)
+    client.create_task_assignment(task, assign_to: "237685143", assign_to_login: nil)
 
 =begin
-  # Twilio API Call
-  account_sid = "AC4c44fc31f1d7446784b3e065f92eb4e6"
-  auth_token = "5ad821b20cff339979cd0a9d42e1a05d"
-  client = Twilio::REST::Client.new account_sid, auth_token
+    # Twilio API Call
+    account_sid = "AC4c44fc31f1d7446784b3e065f92eb4e6"
+    auth_token = "5ad821b20cff339979cd0a9d42e1a05d"
+    client = Twilio::REST::Client.new account_sid, auth_token
 
-  from = "+14087695509" # Your Twilio number
+    from = "+14087695509" # Your Twilio number
 
-  friends = {
-# "+16504171570" => "Cary",
-# "+18053451948" => "Joann",
-#  "+15615122265" => "Austin",
-# "+16502797331" => "Matt",
-#"+16504501439" => "Jane",
-# "+16504171570" => "Cary",
-# "+16613404762" => "Jared"
-# "+18052188632" => "David Lasher",
-# "+16504547616" => "ZT"
-  }
-  friends.each do |key, value|
-    client.account.messages.create(
-        :from => from,
-        :to => key,
-        :body => "Hey #{value}, heads up! A new opportunity has submitted a form on the '/emailblast' landing page. Please follow up on this!"
-    )
-    puts "Sent message to #{value}"
-  end
+    friends = {
+  # "+16504171570" => "Cary",
+  # "+18053451948" => "Joann",
+  #  "+15615122265" => "Austin",
+  # "+16502797331" => "Matt",
+  #"+16504501439" => "Jane",
+  # "+16504171570" => "Cary",
+  # "+16613404762" => "Jared"
+  # "+18052188632" => "David Lasher",
+  # "+16504547616" => "ZT"
+    }
+    friends.each do |key, value|
+      client.account.messages.create(
+          :from => from,
+          :to => key,
+          :body => "Hey #{value}, heads up! A new opportunity has submitted a form on the '/emailblast' landing page. Please follow up on this!"
+      )
+      puts "Sent message to #{value}"
+    end
 =end
+  else
+    File.new('views/layout.erb').readlines
+  end
 
   #erb :thank_you
   File.new('views/thank_you.erb').readlines
@@ -147,6 +161,7 @@ def refresh_env_file(access, refresh)
 
   puts "Tokens have been re-initialized"
 
+
   file.close
 end
 
@@ -177,6 +192,6 @@ get '/init_tokens' do
 
 end
 
-get '/thankyou' do
+get '/submit' do
   File.new('views/thank_you.erb').readlines
 end
