@@ -45,6 +45,16 @@ post '/submit' do
     puts "Token expired or first token generation"
   end
 
+
+  # if acces token has expired, called token_refresh_callbacK NOT USED ANYMORE!
+=begin
+  client = Boxr::Client.new(ENV['ACCESS_TOKEN'],
+                              refresh_token: ENV['REFRESH_TOKEN'],
+                              client_id: ENV['BOX_CLIENT_ID'],
+                              client_secret: ENV['BOX_CLIENT_SECRET'],
+                              &token_refresh_callback)
+=end
+
   # get items in root folder
   items = client.folder_items(Boxr::ROOT)
 
